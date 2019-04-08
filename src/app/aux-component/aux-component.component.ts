@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ZooService } from '../zoo.service';
 import { Cat } from '../shared/models/cat.model';
+import { Observable } from 'rxjs';
 import { Dog } from '../shared/models/dog.model';
-import { Animal } from '../shared/models/animal.interface';
-import { AuxClass } from '../shared/utils/aux-class.utils';
+import { StarWarsService } from '../star-wars.service';
 
 @Component({
   selector: 'app-aux-component',
@@ -11,30 +12,36 @@ import { AuxClass } from '../shared/utils/aux-class.utils';
 })
 export class AuxComponentComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _zooService: ZooService,
+    private _starWarsService: StarWarsService) { }
 
-  private _aux = new AuxClass();
+  myCats: Cat[] = [];
 
-  cat: Cat = new Cat('minino');
-  dog: Dog = new Dog('rufus');
+  luke: any;
 
-  animals: Animal[] = [
-    new Cat('cat1'), new Cat('cat2'), new Cat('cat3'), new Cat('cat4'),
-    new Dog('dog1'), new Dog('dog2'), new Dog('dog3'), new Dog('dog4')
-  ];
+  myDogs$: Observable<Dog[]>;
 
   ngOnInit() {
+    this._zooService.getAllAnimalsByClassName('Cat')
+      .subscribe(
+        (cat) => {
+          this.myCats.push(cat);
+        }
+      );
+    this.myDogs$ = this._zooService.getDogs();
 
+    this._getLuke();
   }
 
-  get myCats(): string[] {
-    const myCats = this._aux.getAnimalsByClassName(this.animals, 'Cat');
-    return this._aux.getAnimalsName(myCats);
+  private _getLuke(): void {
+    this._starWarsService.getLukeSkywalkerInfo()
+      .subscribe(
+        (luke) => {
+          this.luke = luke;
+        }
+      );
   }
 
-  get myDogs(): string[] {
-    const myDogs = this._aux.getAnimalsByClassType(this.animals, new Dog(null));
-    return this._aux.getAnimalsName(myDogs);
-  }
+
 
 }

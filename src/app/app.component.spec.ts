@@ -1,6 +1,7 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { AuxComponentComponent } from './aux-component/aux-component.component';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -9,6 +10,7 @@ describe('AppComponent', () => {
         AppComponent,
         AuxComponentComponent
       ],
+      imports: [HttpClientModule],
     }).compileComponents();
   }));
 
