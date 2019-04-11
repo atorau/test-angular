@@ -16,11 +16,11 @@ export class TestComponentComponent implements OnInit {
 
 
   private _capitalizeComponentName(): void {
-
+    this.name = this.name ? this._capitalizeName(this.name) : 'NONAME';
   }
 
   private _capitalizeName(name: string): string {
-    return null;
+    return name ? name.toUpperCase() : null;
   }
 
   public getCharCount(name: string): number {
