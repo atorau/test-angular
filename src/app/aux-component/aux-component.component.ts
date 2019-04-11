@@ -33,7 +33,7 @@ export class AuxComponentComponent implements OnInit {
   }
 
   get myDogs(): string[] {
-    const myDogs = this._aux.getAnimalsByClassType(this.animals, new Dog(null));
+    const myDogs = this._aux.getAnimalsByClassName(this.animals, 'Dog');
     return this._aux.getAnimalsName(myDogs);
   }
 

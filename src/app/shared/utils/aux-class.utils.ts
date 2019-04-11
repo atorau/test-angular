@@ -6,11 +6,9 @@ export class AuxClass {
     constructor() { }
 
     public getAnimalsByClassName(animals: Animal[], className: string): Animal[] {
-        return null;
-    }
-
-    public getAnimalsByClassType(animals: Animal[], classType: Animals): Animal[] {
-        return null;
+        return animals.filter(a => {
+            return a.constructor.name === className;
+        });
     }
 
     public getAnimalsName(animals: Animal[]): string[] {
