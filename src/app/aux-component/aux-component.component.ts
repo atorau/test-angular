@@ -37,6 +37,7 @@ export class AuxComponentComponent implements OnInit {
     this._starWarsService.getLukeSkywalkerInfo()
       .subscribe(
         (luke) => {
+          console.log(luke.height);
           this.luke = luke;
         }
       );

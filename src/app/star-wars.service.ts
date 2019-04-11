@@ -12,6 +12,6 @@ export class StarWarsService {
   constructor(private httpClient: HttpClient) { }
 
   public getLukeSkywalkerInfo(): Observable<any> {
-    return this.httpClient.get(this.STAR_WARS_URL + 'people/1/');
+    return this.httpClient.get(this.STAR_WARS_URL + 'people/2/');
   }
 }

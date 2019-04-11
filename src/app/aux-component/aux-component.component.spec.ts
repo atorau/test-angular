@@ -13,7 +13,7 @@ describe('AuxComponentComponent', () => {
   let getLukeSpy;
 
   beforeEach(() => {
-    const lukeMock = { name: 'Luke Mock' };
+    const lukeMock = { name: 'Luke Mock', height: 19 };
     const lukeService = jasmine.createSpyObj('StarWarsService', ['getLukeSkywalkerInfo']);
     getLukeSpy = lukeService.getLukeSkywalkerInfo.and.returnValue(of(lukeMock));
     TestBed.configureTestingModule({
@@ -49,5 +49,10 @@ describe('AuxComponentComponent', () => {
     const lukeName = fixture.nativeElement.querySelector('#luke-name');
     expect(lukeName.textContent).toBe('Name: Luke Mock');
     expect(getLukeSpy.calls.any()).toBe(true, 'getLukeSkywalkerInfo called');
+  });
+
+  fit('should say eres mayor if luke height is > 18', () => {
+    const lukeText = fixture.nativeElement.querySelectorAll('.status')[0];
+    expect(lukeText.textContent).toBe('Eres mayor');
   });
 });

@@ -11,3 +11,7 @@
 <p *ngIf="luke">
   <span id="luke-name">Name: {{luke.name}}</span>
 </p>
+
+<div *ngIf="luke && luke.height>18">
+  <p class="status">Eres mayor</p>
+</div>

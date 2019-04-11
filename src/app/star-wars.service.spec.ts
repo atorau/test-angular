@@ -21,7 +21,12 @@ describe('StarWarsService', () => {
 
   });
 
+  beforeEach(() => {
+    console.log('¡antes');
+  });
+
   afterEach(() => {
+    console.log('¡despues');
     httpMock.verify();
   });
 
